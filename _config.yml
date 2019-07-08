@@ -1,0 +1,9 @@
+# Jekyll configuration
+repository: rello/audioplayer_sonos
+theme: jekyll-theme-cayman
+timezone: Europe/Berlin
+name: "Audio Player - SONOS"
+title: "Audio Player SONOS"
+description: "Audio Player SONOS for Nextcloud and ownCloud"
+url: "https://github.com/rello/audioplayer_sonos"
+author: "Marcel Scherello"
