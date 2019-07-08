@@ -30,4 +30,8 @@ See [README](https://github.com/rello/audioplayer_sonos/blob/master/README.md) f
 	<types>
    		<filesystem/>
  	</types>
+	<settings>
+		<personal>OCA\audioplayer_sonos\Settings\Personal</personal>
+		<admin>OCA\audioplayer_sonos\Settings\Admin</admin>
+	</settings>
 </info>

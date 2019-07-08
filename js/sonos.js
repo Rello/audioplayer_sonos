@@ -44,7 +44,7 @@ OCA.Audioplayer.Sonos = {
 
         $.ajax({
             type: 'POST',
-            url: OC.generateUrl('apps/audioplayer/sonosqueue'),
+            url: OC.generateUrl('apps/audioplayer_sonos/sonosqueue'),
             data: {
                 'trackArray': trackids,
                 'fileIndex': liIndex
@@ -63,7 +63,7 @@ OCA.Audioplayer.Sonos = {
     },
 
     sonosGone: function () {
-        OC.dialogs.alert(t('audioplayer', 'SONOS Player not availble.'), t('audioplayer', 'Error'), function(){
+        OC.dialogs.alert(t('audioplayer_sonos', 'SONOS Player not availble.'), t('audioplayer_sonos', 'Error'), function(){
             window.location = OC.linkTo('settings','user/audioplayer');
         });
     },
@@ -71,7 +71,7 @@ OCA.Audioplayer.Sonos = {
     sonosAction: function (action) {
         $.ajax({
             type: 'POST',
-            url: OC.generateUrl('apps/audioplayer/sonosaction'),
+            url: OC.generateUrl('apps/audioplayer_sonos/sonosaction'),
             data: {
                 'action': action
             },

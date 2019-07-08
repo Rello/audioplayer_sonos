@@ -9,7 +9,7 @@
  * @copyright 2016-2019 Marcel Scherello
  */
 
-namespace OCA\audioplayer\Controller;
+namespace OCA\audioplayer_sonos\Controller;
 
 use GuzzleHttp\Client;
 use OCP\AppFramework\Controller;
