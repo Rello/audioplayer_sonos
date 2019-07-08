@@ -88,6 +88,36 @@ OCA.Audioplayer.Sonos = {
         });
     },
 
+    SONOSTabView: function () {
+        var trackid = document.getElementById('app-sidebar').dataset.trackid;
+
+        OCA.Audioplayer.Sidebar.resetView();
+        document.getElementById('tabHeaderSONOS').classList.add('selected');
+        document.getElementById('SONOSTabView').classList.remove('hidden');
+        document.getElementById('SONOSTabView').innerHTML = '<div style="text-align:center; word-wrap:break-word;" class="get-metadata"><p><img src="' + OC.imagePath('core', 'loading.gif') + '"><br><br></p><p>' + t('audioplayer_sonos', 'Reading data') + '</p></div>';
+
+        var html = '<div style="margin-left: 2em; background-position: initial;" class="icon-info">';
+        html += '<p style="margin-left: 2em;">' + t('audioplayer_sonos', 'Details for error analysis') + '</p>';
+        html += '<br>';
+        html += '</div>';
+        $('#SONOSTabView').removeClass('hidden').html(html);
+
+        $.ajax({
+            type: 'POST',
+            url: OC.generateUrl('apps/audioplayer_sonos/sonosdebug'),
+            data: {'trackid': trackid},
+            success: function (jsondata) {
+                html = $('#SONOSTabView').html();
+                html += '<p style="margin-left: 2em;">' + t('audioplayer_sonos', 'SMB link from user settings:') + '</p>';
+                html += '<p style="margin-left: 2em;">' + jsondata.smb + '</p>';
+                html += '<br>';
+                html += '<p style="margin-left: 2em;">' + t('audioplayer_sonos', 'Combined link for your SONOS controller:') + '</p>';
+                html += '<p style="margin-left: 2em;">' + jsondata.sonos + '</p>';
+                $('#SONOSTabView').html(html);
+            }
+        });
+    },
+
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -119,4 +149,13 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#sonos_down').on('click', function () {
         OCA.Audioplayer.Sonos.sonosAction('down');
     });
+
+    OCA.Audioplayer.Sidebar.registerSidebarTab({
+        id: 'tabHeaderSONOS',
+        class: 'SONOSTabView',
+        tabindex: '5',
+        name: t('audioplayer_sonos', 'SONOS'),
+        action: OCA.Audioplayer.Sonos.SONOSTabView,
+    });
+
 });
