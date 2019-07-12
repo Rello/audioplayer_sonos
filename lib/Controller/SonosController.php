@@ -100,7 +100,7 @@ class SonosController extends Controller
 
         $device = $this->getDeviceByIp($this->ip);
 
-        if (! empty($device)) {
+        if (!empty($device)) {
             $this->udn = $device[1];
             $this->room = $device[2];
             $sonos = new \PHPSonos($this->ip);
@@ -308,32 +308,26 @@ class SonosController extends Controller
      */
     public function setAction($action)
     {
-
         $sonos = $this->initController();
         if ($sonos === false) return false;
 
         if ($action === 'play') {
             $sonos->play();
             return true;
-        }
-        if ($action === 'next') {
+        } elseif ($action === 'next') {
             $sonos->next();
             return true;
-        }
-        if ($action === 'previous') {
+        } elseif ($action === 'previous') {
             $sonos->previous();
             return true;
-        }
-        if ($action === 'pause') {
+        } elseif ($action === 'pause') {
             $sonos->pause();
             return true;
-        }
-        if ($action === 'up') {
+        } elseif ($action === 'up') {
             $volume = (int)$sonos->GetVolume();
             $sonos->SetVolume($volume + 3);
             return true;
-        }
-        if ($action === 'down') {
+        } elseif ($action === 'down') {
             $volume = $sonos->GetVolume();
             $sonos->SetVolume($volume - 3);
             return true;
