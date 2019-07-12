@@ -4,12 +4,8 @@
 
 SONOS Playback add-on for the Audio Player in Nextcloud and ownCloud.
 
-
 ## Features
 - Play your local library on your SONOS speaker
-
-### Languages
-English (en), German (Informal) (de), German (Formal) (de_DE)
 
 ## Installation
 - [Nextcloud App Store](https://apps.nextcloud.com/apps/audioplayer_sonos)
@@ -17,7 +13,6 @@ English (en), German (Informal) (de), German (Formal) (de_DE)
 
 This is not an independent app! 
 You have to install the [Audio Player](https://github.com/rello/audioplayer "Audio Player for Nextcloud and ownCloud") app (>v2.8) to use this add-on.
-
 
 ## Maintainers
 - [Marcel Scherello](https://github.com/rello) (author, project leader)
