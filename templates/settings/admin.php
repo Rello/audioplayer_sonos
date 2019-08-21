@@ -22,8 +22,8 @@ script('audioplayer_sonos', 'settings/admin');
                    target="_blank"><?php p($l->t('More information…')); ?></a></em>
         </p>
         <br>
-        <label for="sonos"><?php p($l->t('Enable for all users')); ?>:&nbsp;</label>
-        <input type="checkbox" id="sonos" <?php p($_['audioplayer_sonos_admin']); ?>/>
+        <input type="checkbox" class="checkbox" id="sonos" <?php p($_['audioplayer_sonos_admin']); ?>/>
+        <label for="sonos"><?php p($l->t('Enable for all users')); ?></label>
         <br>
     </div>
 </div>

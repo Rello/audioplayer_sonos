@@ -32,8 +32,9 @@ if (!OCA.Audioplayer.Sonos) {
  */
 OCA.Audioplayer.Sonos = {
 
-    playSonos: function (liIndex) {
+    playSonos: function (element) {
 
+        var liIndex = $(element).closest('li').index();
         var playIndicator = $('#sonos_play');
         var trackids = [];
 
@@ -150,12 +151,13 @@ document.addEventListener('DOMContentLoaded', function () {
         OCA.Audioplayer.Sonos.sonosAction('down');
     });
 
-    OCA.Audioplayer.Sidebar.registerSidebarTab({
-        id: 'tabHeaderSONOS',
-        class: 'SONOSTabView',
-        tabindex: '5',
-        name: t('audioplayer_sonos', 'SONOS'),
-        action: OCA.Audioplayer.Sonos.SONOSTabView,
-    });
-
+    if (document.getElementById('audioplayer_sonos').value === 'checked') {
+        OCA.Audioplayer.Sidebar.registerSidebarTab({
+            id: 'tabHeaderSONOS',
+            class: 'SONOSTabView',
+            tabindex: '5',
+            name: t('audioplayer_sonos', 'SONOS'),
+            action: OCA.Audioplayer.Sonos.SONOSTabView,
+        });
+    }
 });

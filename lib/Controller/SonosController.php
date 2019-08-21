@@ -95,8 +95,8 @@ class SonosController extends Controller
     {
         require_once __DIR__ . "/../../3rdparty/PHPSonos.php";
 
-        $this->smb_path = $this->configManager->getUserValue($this->userId, 'audioplayer', 'sonos_smb_path');
-        $this->ip = $this->configManager->getUserValue($this->userId, 'audioplayer', 'sonos_controller');
+        $this->smb_path = $this->configManager->getUserValue($this->userId, $this->appName, 'sonos_smb_path');
+        $this->ip = $this->configManager->getUserValue($this->userId, $this->appName, 'sonos_controller');
 
         $device = $this->getDeviceByIp($this->ip);
 
@@ -153,6 +153,7 @@ class SonosController extends Controller
         $path = $file->getPath();
         $path_segments = explode('/', trim($path, '/'), 3);
         $link = '';
+        $this->logger->debug($file->getMountPoint().' '.$path.' '.$type, array('app' => 'audioplayer_sonos'));
 
         if ($type === 'smb') $link = $file->getInternalPath();
         if ($type === 'shared') $link = $path_segments[2];
@@ -266,9 +267,7 @@ class SonosController extends Controller
         //$test = $this->getDevices();
         if ($sonos === false) $sonos = array('no controller found');
 
-        $response = new JSONResponse();
-        $response->setData($sonos);
-        return $response;
+        return new JSONResponse($sonos);
 
     }
 
@@ -282,21 +281,19 @@ class SonosController extends Controller
      */
     public function getDebugInfo($trackid)
     {
-        $smb_path = $this->configManager->getUserValue($this->userId, 'audioplayer', 'sonos_smb_path');
-        $nodes = $this->rootFolder->getUserFolder($this->userId)->getById($trackid);
+        $smb_path = $this->configManager->getUserValue($this->userId, $this->appName, 'sonos_smb_path');
+        $fileId = $this->DBController->getFileId($trackid);
+        $nodes = $this->rootFolder->getUserFolder($this->userId)->getById($fileId);
         $file = array_shift($nodes);
 
-        $link = $this->smbFilePath($file);
+        if ($file) $link = $this->smbFilePath($file);
 
         $result = [
             'smb' => $smb_path,
-            'filelink' => $link,
             'sonos' => $link
         ];
 
-        $response = new JSONResponse();
-        $response->setData($result);
-        return $response;
+        return new JSONResponse($result);
     }
 
     /**

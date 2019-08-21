@@ -23,8 +23,8 @@ script('audioplayer_sonos', 'settings/personal');
 
     <?php } else { ?>
         <div>
+            <input type="checkbox" class="checkbox" id="sonos" <?php p($_['audioplayer_sonos']); ?>/>
             <label for="sonos"><?php p($l->t('SONOS Playback')); ?>&nbsp;</label>
-            <input type="checkbox" id="sonos" <?php p($_['audioplayer_sonos']); ?>/>
             <p><em><?php p($l->t('All titles will be played on your SONOS speaker')); ?></em></p>
             <p><em><a href="https://github.com/Rello/audioplayer/wiki/SONOS"
                       target="_blank"><?php p($l->t('More information…')); ?></a></em></p>
