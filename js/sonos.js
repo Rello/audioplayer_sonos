@@ -95,26 +95,26 @@ OCA.Audioplayer.Sonos = {
         OCA.Audioplayer.Sidebar.resetView();
         document.getElementById('tabHeaderSONOS').classList.add('selected');
         document.getElementById('SONOSTabView').classList.remove('hidden');
-        document.getElementById('SONOSTabView').innerHTML = '<div style="text-align:center; word-wrap:break-word;" class="get-metadata"><p><img src="' + OC.imagePath('core', 'loading.gif') + '"><br><br></p><p>' + t('audioplayer_sonos', 'Reading data') + '</p></div>';
 
         var html = '<div style="margin-left: 2em; background-position: initial;" class="icon-info">';
         html += '<p style="margin-left: 2em;">' + t('audioplayer_sonos', 'Details for error analysis') + '</p>';
         html += '<br>';
         html += '</div>';
-        $('#SONOSTabView').removeClass('hidden').html(html);
+        document.getElementById('SONOSTabView').classList.remove('hidden');
+        document.getElementById('SONOSTabView').innerHTML = html;
 
         $.ajax({
             type: 'POST',
             url: OC.generateUrl('apps/audioplayer_sonos/sonosdebug'),
             data: {'trackid': trackid},
             success: function (jsondata) {
-                html = $('#SONOSTabView').html();
+                html = document.getElementById('SONOSTabView').innerHTML;
                 html += '<p style="margin-left: 2em;">' + t('audioplayer_sonos', 'SMB link from user settings:') + '</p>';
                 html += '<p style="margin-left: 2em;">' + jsondata.smb + '</p>';
                 html += '<br>';
                 html += '<p style="margin-left: 2em;">' + t('audioplayer_sonos', 'Combined link for your SONOS controller:') + '</p>';
                 html += '<p style="margin-left: 2em;">' + jsondata.sonos + '</p>';
-                $('#SONOSTabView').html(html);
+                document.getElementById('SONOSTabView').innerHTML = html;
             }
         });
     },
@@ -122,32 +122,32 @@ OCA.Audioplayer.Sonos = {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    $('#sonos_play').on('click', function () {
-        var playIndicator = $('#sonos_play');
+    document.getElementById('#sonos_play').addEventListener('click', function () {
+        var playIndicator = document.getElementById('#sonos_play');
         var action;
 
-        if (playIndicator.hasClass('playing')) {
-            playIndicator.removeClass('playing');
+        if (playIndicator.classList.contains('playing')) {
+            playIndicator.classList.remove('playing');
             action = 'pause';
         } else {
             action = 'play';
         }
-        if(OCA.Audioplayer.Sonos.sonosAction(action)) playIndicator.addClass('playing');
+        if(OCA.Audioplayer.Sonos.sonosAction(action)) playIndicator.classList.add('playing');
     });
 
-    $('#sonos_prev').on('click', function () {
+    document.getElementById('sonos_prev').addEventListener('click', function () {
         OCA.Audioplayer.Sonos.sonosAction('previous');
     });
 
-    $('#sonos_next').on('click', function () {
+    document.getElementById('sonos_next').addEventListener('click', function () {
         OCA.Audioplayer.Sonos.sonosAction('next');
     });
 
-    $('#sonos_up').on('click', function () {
+    document.getElementById('sonos_up').addEventListener('click', function () {
         OCA.Audioplayer.Sonos.sonosAction('up');
     });
 
-    $('#sonos_down').on('click', function () {
+    document.getElementById('sonos_down').addEventListener('click', function () {
         OCA.Audioplayer.Sonos.sonosAction('down');
     });
 
