@@ -20,6 +20,6 @@ $application->registerRoutes($this, ['routes' => [
     ['name' => 'sonos#getStatus', 'url' => '/sonosstatus', 'verb' => 'POST'],
     ['name' => 'sonos#setQueue', 'url' => '/sonosqueue', 'verb' => 'POST'],
     ['name' => 'sonos#setAction', 'url' => '/sonosaction', 'verb' => 'POST'],
-    ['name' => 'sonos#getDebugInfo', 'url' => '/sonosdebug', 'verb' => 'POST'],
+    ['name' => 'sonos#getDebugInfo', 'url' => '/sonosdebug', 'verb' => 'GET'],
     ['name' => 'sonos#getDeviceList', 'url' => '/sonosdevices', 'verb' => 'POST'],
 ]]);

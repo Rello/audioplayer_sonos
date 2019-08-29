@@ -104,7 +104,7 @@ OCA.Audioplayer.Sonos = {
         document.getElementById('SONOSTabView').innerHTML = html;
 
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: OC.generateUrl('apps/audioplayer_sonos/sonosdebug'),
             data: {'trackid': trackid},
             success: function (jsondata) {
@@ -122,8 +122,10 @@ OCA.Audioplayer.Sonos = {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('#sonos_play').addEventListener('click', function () {
-        var playIndicator = document.getElementById('#sonos_play');
+    if (document.getElementById('audioplayer_sonos').value !== 'checked') return;
+
+    document.getElementById('sonos_play').addEventListener('click', function () {
+        var playIndicator = document.getElementById('sonos_play');
         var action;
 
         if (playIndicator.classList.contains('playing')) {
