@@ -4,11 +4,11 @@
 	<name>Audio Player - SONOS (add-on)</name>
 	<summary>SONOS Playback</summary>
 	<description><![CDATA[SONOS Playback add-on for the Audio Player in Nextcloud and ownCloud.
-	Audio Player > v2.8 required
+	Audio Player as of v2.8 required
 
 - Play your local library on your SONOS speaker
 ]]></description>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<licence>agpl</licence>
 	<author>Marcel Scherello</author>
 	<namespace>audioplayer_sonos</namespace>

@@ -12,7 +12,7 @@ SONOS Playback add-on for the Audio Player in Nextcloud and ownCloud.
 - [ownCloud Marketplace](https://marketplace.owncloud.com/apps/audioplayer_sonos)
 
 This is not an independent app! 
-You have to install the [Audio Player](https://github.com/rello/audioplayer "Audio Player for Nextcloud and ownCloud") app (>v2.8) to use this add-on.
+You have to install the [Audio Player](https://github.com/rello/audioplayer "Audio Player for Nextcloud and ownCloud") app (as of v2.8) to use this add-on.
 
 ## Maintainers
 - [Marcel Scherello](https://github.com/rello) (author, project leader)
