@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the Audio Player SONOS project will be documented in this file.
 
+## 1.1.1 - 2020-04-13
+### Added
+- NC 19
+- PHP 7.4
+
 ## 1.1.0 - 2020-0115
 ### Added
 - NC18
