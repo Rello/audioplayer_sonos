@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Audio Player SONOS project will be documented in this file.
 
+## 1.2.0 - 2020-10-04
+### Added
+- NC 20
+
 ## 1.1.1 - 2020-04-13
 ### Added
 - NC 19
