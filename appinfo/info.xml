@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>audioplayer_sonos</id>
+	<name>Audio Player - SONOS (add-on)</name>
+	<summary>SONOS Playback</summary>
+	<description><![CDATA[SONOS Playback add-on for the Audio Player in Nextcloud and ownCloud.
+	Audio Player as of v2.8 required
+
+- Play your local library on your SONOS speaker
+]]></description>
+	<version>1.2.1</version>
+	<licence>agpl</licence>
+	<author>Marcel Scherello</author>
+	<namespace>audioplayer_sonos</namespace>
+	<documentation>
+		<user>https://github.com/Rello/audioplayer_sonos/wiki/SONOS</user>
+	</documentation>
+	<category>multimedia</category>
+	<website>https://github.com/rello/audioplayer_sonos</website>
+	<bugs>https://github.com/rello/audioplayer_sonos/issues</bugs>
+	<repository type="git">https://github.com/rello/audioplayer_sonos.git</repository>
+	<discussion>https://help.nextcloud.com/c/apps/audioplayer</discussion>
+	<screenshot>https://raw.githubusercontent.com/rello/audioplayer_sonos/master/screenshots/audioplayer_sonos_logo.png</screenshot>
+	<dependencies>
+		<php min-version="7.0" max-version="7.4"/>
+		<nextcloud min-version="19" max-version="21"/>
+	</dependencies>
+	<types>
+   		<filesystem/>
+ 	</types>
+	<settings>
+		<personal>OCA\audioplayer_sonos\Settings\Personal</personal>
+		<admin>OCA\audioplayer_sonos\Settings\Admin</admin>
+	</settings>
+</info>
