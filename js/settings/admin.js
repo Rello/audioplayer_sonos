@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'value': user_value
             },
             success: function () {
-                OC.Notification.showTemporary(t('audioplayer_sonos', 'saved'));
+                OCP.Toast.success(t('audioplayer_sonos', 'saved'))
             }
         });
     });

@@ -9,11 +9,8 @@
  * @copyright 2019 Marcel Scherello
  */
 
-namespace OCA\audioplayer_sonos\AppInfo;
-
-$application = new Application();
-
-$application->registerRoutes($this, ['routes' => [
+return [
+    'routes' => [
     ['name' => 'setting#setValue', 'url' => '/setvalue', 'verb' => 'POST'],
     ['name' => 'setting#getValue', 'url' => '/getvalue', 'verb' => 'POST'],
     ['name' => 'setting#admin', 'url' => '/admin', 'verb' => 'POST'],
@@ -22,4 +19,5 @@ $application->registerRoutes($this, ['routes' => [
     ['name' => 'sonos#setAction', 'url' => '/sonosaction', 'verb' => 'POST'],
     ['name' => 'sonos#getDebugInfo', 'url' => '/sonosdebug', 'verb' => 'GET'],
     ['name' => 'sonos#getDeviceList', 'url' => '/sonosdevices', 'verb' => 'POST'],
-]]);
+    ]
+];

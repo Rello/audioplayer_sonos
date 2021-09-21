@@ -14,11 +14,8 @@ namespace OCA\audioplayer_sonos\Controller;
 use OCP\AppFramework\Controller;
 use OCP\IRequest;
 use OCP\IL10N;
-use OCP\IDbConnection;
-use OCP\Share\IManager;
-use OCP\ILogger;
-use OCP\ITagManager;
-
+use OCP\IDBConnection;
+use Psr\Log\LoggerInterface;
 /**
  * Controller class for main page.
  */
@@ -26,29 +23,20 @@ class DbController extends Controller
 {
 
     private $userId;
-    private $l10n;
     private $db;
-    private $shareManager;
-    private $tagManager;
     private $logger;
 
     public function __construct(
         $appName,
         IRequest $request,
         $userId,
-        IL10N $l10n,
         IDbConnection $db,
-        ITagManager $tagManager,
-        IManager $shareManager,
-        ILogger $logger
+        LoggerInterface $logger
     )
     {
         parent::__construct($appName, $request);
         $this->userId = $userId;
-        $this->l10n = $l10n;
         $this->db = $db;
-        $this->shareManager = $shareManager;
-        $this->tagManager = $tagManager;
         $this->logger = $logger;
     }
 

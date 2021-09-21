@@ -15,11 +15,6 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;
 use OCP\IConfig;
-use OCP\Files\IRootFolder;
-use OCP\ITagManager;
-use OCP\IDbConnection;
-use OCP\ISession;
-
 
 /**
  * Controller class for main page.
@@ -28,35 +23,18 @@ class SettingController extends Controller {
 	
 	private $userId;
     private $config;
-	private $rootFolder;
-    private $tagger;
-    private $tagManager;
-    private $db;
-    private $session;
-    private $DBController;
 
     public function __construct(
         $appName,
         IRequest $request,
         $userId,
-        IConfig $config,
-        IDBConnection $db,
-        ITagManager $tagManager,
-        IRootFolder $rootFolder,
-        ISession $session,
-        DbController $DBController
+        IConfig $config
     )
     {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->userId = $userId;
         $this->config = $config;
-        $this->db = $db;
-        $this->tagManager = $tagManager;
-        $this->tagger = null;
-        $this->rootFolder = $rootFolder;
-        $this->session = $session;
-        $this->DBController = $DBController;
 	}
 
     /**

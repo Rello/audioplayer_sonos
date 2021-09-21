@@ -16,7 +16,7 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\Files\IRootFolder;
 use OCP\IConfig;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 
 /**
@@ -41,7 +41,7 @@ class SonosController extends Controller
         IRequest $request,
         $userId,
         IConfig $configManager,
-        ILogger $logger,
+        LoggerInterface $logger,
         IRootFolder $rootFolder,
         DbController $DBController
     )
