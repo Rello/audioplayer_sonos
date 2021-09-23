@@ -6,7 +6,7 @@
  * later. See the LICENSE.md file.
  *
  * @author Marcel Scherello <audioplayer@scherello.de>
- * @copyright 2016-2019 Marcel Scherello
+ * @copyright 2016-2021 Marcel Scherello
  */
 
 namespace OCA\audioplayer_sonos\Controller;
@@ -76,6 +76,7 @@ class SonosController extends Controller
             $nodes = $this->rootFolder->getUserFolder($this->userId)->getById($fileId);
             $file = array_shift($nodes);
             $link = $this->smbFilePath($file);
+            //$this->logger->error($link);
             $sonos->AddToQueue($link);
         }
 
@@ -147,16 +148,15 @@ class SonosController extends Controller
     private function smbFilePath($file)
     {
 
+        $link = $file->getInternalPath();
         $segments = explode(':', $file->getMountPoint()->getStorageId());
         $type = $segments[0];
 
-        $path = $file->getPath();
-        $path_segments = explode('/', trim($path, '/'), 3);
-        $link = '';
-        $this->logger->debug($file->getMountPoint().' '.$path.' '.$type, array('app' => 'audioplayer_sonos'));
-
-        if ($type === 'smb') $link = $file->getInternalPath();
-        if ($type === 'shared') $link = $path_segments[2];
+        if ($type === 'shared') {
+            $path = $file->getPath();
+            $path_segments = explode('/', trim($path, '/'), 3);
+            $link = $path_segments[2];
+        }
 
         return 'x-file-cifs://' . $this->smb_path . rawurlencode($link);
     }
@@ -281,7 +281,7 @@ class SonosController extends Controller
      */
     public function getDebugInfo($trackid)
     {
-        $smb_path = $this->configManager->getUserValue($this->userId, $this->appName, 'sonos_smb_path');
+        $this->smb_path = $this->configManager->getUserValue($this->userId, $this->appName, 'sonos_smb_path');
         $fileId = $this->DBController->getFileId($trackid);
         $nodes = $this->rootFolder->getUserFolder($this->userId)->getById($fileId);
         $file = array_shift($nodes);
@@ -289,7 +289,7 @@ class SonosController extends Controller
         if ($file) $link = $this->smbFilePath($file);
 
         $result = [
-            'smb' => $smb_path,
+            'smb' => $this->smb_path,
             'sonos' => $link
         ];
 

@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to the Audio Player SONOS project will be documented in this file.
 
-## 1.3.0 - 2021-09-21
+## 1.3.0 - 2021-09-23
 ### Changed
 - more NC compatibility
 - updated event listener
