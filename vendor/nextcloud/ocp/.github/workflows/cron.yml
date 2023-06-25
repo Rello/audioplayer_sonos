@@ -1,0 +1,37 @@
+name: Update APIs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '00 11 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        branches: ["master", "stable27", "stable26", "stable25", "stable24", "stable23"]
+
+    name: Update ${{ matrix.branches }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ matrix.branches }}
+          submodules: true
+
+      - name: Update
+        run: ./build.sh
+
+      - name: Check status
+        run: git status && git diff-index HEAD
+
+      - name: Push
+        run: ./push.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
