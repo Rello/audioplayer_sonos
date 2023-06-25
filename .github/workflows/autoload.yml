@@ -1,10 +1,7 @@
 name: Generate Autoloader
 
 on:
-  push:
-    branches: [ main ]  # Adjust this to your preferred branch
-  pull_request:
-    branches: [ main ]  # Adjust this to your preferred branch
+  workflow_dispatch:
 
 jobs:
   build:
@@ -21,6 +18,7 @@ jobs:
         php-version: '8.2' # Adjust this to the PHP version you need
         extensions: mbstring, intl # Add any PHP extensions you need
         coverage: xdebug
+        tools: composer:v2 # This will ensure Composer 2 is used
 
     - name: Install dependencies using Composer
       run: composer install --prefer-dist --no-progress
