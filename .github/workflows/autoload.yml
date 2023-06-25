@@ -27,7 +27,7 @@ jobs:
       run: composer dump-autoload -o
 
     - name: Create composer directory
-      run: mkdir composer
+      run: mkdir -p composer
 
     - name: Create and wire autoload.php file
       run: echo "<?php require __DIR__ . '/vendor/autoload.php';" > composer/autoload.php
