@@ -3,7 +3,7 @@
 		"php": ">=7.4.0"
 	},
 	"require-dev": {
-		"christophwurst/nextcloud": "^v22.0.0-RC1",
+		"nextcloud/ocp": "^v27.0.0",
 		"symfony/symfony": "^4.4.19",
 		"guzzlehttp/guzzle": "^6.3.0"
 	}
