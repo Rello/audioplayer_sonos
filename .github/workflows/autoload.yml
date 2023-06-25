@@ -1,0 +1,43 @@
+name: Generate Autoloader
+
+on:
+  push:
+    branches: [ main ]  # Adjust this to your preferred branch
+  pull_request:
+    branches: [ main ]  # Adjust this to your preferred branch
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2' # Adjust this to the PHP version you need
+        extensions: mbstring, intl # Add any PHP extensions you need
+        coverage: xdebug
+
+    - name: Install dependencies using Composer
+      run: composer install --prefer-dist --no-progress
+
+    - name: Dump the optimized autoloader
+      run: composer dump-autoload -o
+
+    - name: Create composer directory
+      run: mkdir composer
+
+    - name: Create and wire autoload.php file
+      run: echo "<?php require __DIR__ . '/vendor/autoload.php';" > composer/autoload.php
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add composer/autoload.php
+        git commit -m "Add autoload.php file via GitHub Actions"
+        git push
